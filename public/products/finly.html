@@ -474,7 +474,31 @@ padding: 17px 47px;
 
   </main>
 
-  <div class="download-btn">Download</div>
+<a href="apps/finly.apk" download class="download-btn">Download</a>
+
+
+  <script>
+  const preloadImages = [
+    "images/HOME.png",
+    "images/LOCK.png",
+    "images/PROFILE.png",
+    "images/REMINDER.png",
+    "images/WALLETS.png",
+    "images/HISTORY.png",
+    "images/SETTINGS.png",
+    "images/SAVINGS.png",
+    "images/TAGS.png",
+    "images/NEWTASK.png",
+    "images/manual.gif",
+    "finlybg.png"
+  ];
+
+  preloadImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+</script>
+
 
   <script>
   const tabs = document.querySelectorAll('.tab');

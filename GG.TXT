@@ -545,3 +545,11 @@
 </body>
 
 </html>
+
+
+
+
+firebase deploy
+git add .
+git commit -m "Updated index.html and styling"
+git push

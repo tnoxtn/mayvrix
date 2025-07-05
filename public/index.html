@@ -626,19 +626,19 @@
         tag: "BETA",
         tagColor: "blueviolet",
         desc: "finly is a personal finance application that enables efficient tracking of income and expenses, spending analysis, and financial oversight",
-        download: "https://example.com/download",
+        download: "products/apps/finly.apk",
         info: "products/finly.html",
         upcoming: false
       },
-      {
-        name: "Supra",
-        tag: "UPCOMING",
-        tagColor: "red",
-        desc: "Supra is an upcoming productivity tool that boosts workflow using smart task grouping and minimal UI.",
-        download: "https://example.com/supra/download",
-        info: "https://example.com/supra/info",
-        upcoming: true
-      },
+      // {
+      //   name: "Supra",
+      //   tag: "UPCOMING",
+      //   tagColor: "red",
+      //   desc: "Supra is an upcoming productivity tool that boosts workflow using smart task grouping and minimal UI.",
+      //   download: "https://example.com/supra/download",
+      //   info: "https://example.com/supra/info",
+      //   upcoming: true
+      // },
     //   {
     //     name: "Nova",
     //     tag: "RELEASE",
@@ -667,7 +667,14 @@
       } else {
         downloadBtn.classList.remove("disabled");
         infoBtn.classList.remove("disabled");
-        downloadBtn.onclick = () => location.href = app.download;
+
+        downloadBtn.onclick = () => {
+  const a = document.createElement('a');
+  a.href = app.download;
+  a.download = ""; // optional: forces download
+  a.click();
+};
+
         infoBtn.onclick = () => location.href = app.info;
       }
     }
@@ -686,7 +693,14 @@
     } else {
       downloadBtn.classList.remove("disabled");
       infoBtn.classList.remove("disabled");
-      downloadBtn.onclick = () => location.href = initial.download;
+      
+     downloadBtn.onclick = () => {
+  const a = document.createElement('a');
+  a.href = initial.download;
+  a.download = "";
+  a.click();
+};
+
       infoBtn.onclick = () => location.href = initial.info;
     }
 
