@@ -1,89 +1,698 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.10.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.10.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.10.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finly</title>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Press Start 2P', system-ui;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      padding: 20px 40px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 140px;
+    }
+
+    .text ul {
+      display: flex;
+      gap: 24px;
+    }
+
+    .text ul li {
+      list-style: none;
+      padding: 7px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .text ul li.active {
+      background-color: black;
+      color: white;
+    }
+
+    main {
+      flex: 1;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app {
+      padding: 80px 40px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .app-left {
+      flex: 1;
+      position: relative;
+    }
+
+    .title-container {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .app-left h1 {
+      font-size: 128px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .tag {
+      background-color: blueviolet;
+      color: white;
+      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      height: fit-content;
+      margin-top: 12px;
+    }
+
+    .desc {
+      font-size: 14px;
+      margin-top: 40px;
+      max-width: 600px;
+      line-height: 2;
+    }
+
+    
+
+    .buttons {
+      margin-top: 50px;
+      display: flex;
+      gap: 20px;
+      z-index: 1;
+    }
+
+    .buttons button {
+      padding: 20px 40px;
+      font-size: 14px;
+      font-family: 'Press Start 2P';
+      border: 2px solid black;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+
+    .buttons .download {
+      background: black;
+      color: white;
+    }
+
+    .buttons button.disabled {
+      background: #ccc;
+      color: #666;
+      cursor: not-allowed;
+      border-color: #aaa;
+    }
+
+    .arrow-button {
+      width: 96px;
+      height: 96px;
+      background: black;
+      color: white;
+      font-size: 80px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-top: 90px; /* increased to avoid overlap */
+    }
+
+    .material-symbols-outlined {
+      font-size: 72px;
+    }
+
+    .app-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    footer {
+      padding: 30px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: black;
+    }
+
+    .footer-left {
+      font-family: 'Press Start 2P';
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      word-break: break-word;
+      max-width: 50%;
+    }
+
+    .footer-right span.material-symbols-outlined {
+      font-size: 24px;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+
+
+
+
+   #about {
+  font-family: 'Press Start 2P';
+  color: black;
+  padding: 55px 60px 60px;
+  overflow: hidden;
+}
+
+
+.about-container {
+  max-width: none;
+  width: 100%;
+}
+
+.about-title {
+  font-size: 78px;
+  margin-bottom: 44px;
+}
+
+.about-subtitle {
+  font-size: 30px;
+  line-height: 2;
+  margin-bottom: 48px;
+}
+
+.about-subtitle mark {
+  background-color: #6aff00;
+  padding: 0 6px;
+}
+
+.about-desc {
+  font-size: 13px;
+  line-height: 2;
+  max-width: 1200px;
+  margin-bottom: 40px;
+}
+
+.about-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.creator-btn {
+  padding: 20px 40px;
+  background: black;
+  color: white;
+  border-radius: 999px;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.about-pattern {
+  flex-shrink: 0; 
+  width: 340px;
+  height: 160px;
+  background-image: url('ICONIC.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+ margin-left: auto;   
+   align-self: flex-end;
+}
+
+
+
+
+
+    @media screen and (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
       }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      .app {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+      .app-left h1 {
+        font-size: 64px;
+      }
+
+      .arrow-button {
+        width: 72px;
+        height: 72px;
+        font-size: 36px;
+      }
+
+      .title-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tag {
+        margin-top: 10px;
+      }
+
+      @media screen and (max-width: 600px) {
+  #about {
+    padding: 40px 20px 140px;
+    text-align: center;
+    position: relative;
+    
+  }
+
+  .about-title {
+    font-size:45px;
+  }
+
+  .about-subtitle {
+    font-size: 24px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .about-desc {
+    font-size: 11px;
+    line-height: 1.8;
+    max-width: 100%;
+    margin-bottom: 50px;
+  }
+
+  .creator-btn {
+    font-size: 11px;
+    padding: 16px;
+    width: 100%;
+    border-radius: 999px;
+  }
+
+
+
+  
+  .about-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .about-pattern {
+    display: block;
+    margin: 20px auto; /* ⬅️ This centers it */
+    width: 380px;
+    height: 150px;
+    background-image: url('ICONIC.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .about-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}
+
+
+    @media screen and (max-width: 500px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .logo img {
+    width: 92px;
+  }
+
+  .text ul {
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+
+  .text ul li {
+    font-size: 11px;
+    padding: 7px 10px;
+  }
+
+  .app {
+    padding: 30px 22px;
+  }
+
+  .app-left h1 {
+    font-size: 45px;
+    line-height: 1.2;
+  }
+
+  .title-container {
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 4px 10px;
+    margin-top: 4px;
+  }
+
+  .desc {
+    font-size: 12px;
+    margin-top: 16px;
+    line-height: 1.6;
+    margin-bottom: 65px;
+  }
+
+  .arrow-button {
+    display: none;
+    /* position: fixed;
+    right: 20px;
+  top: 444px;
+    width: 75px;
+    height: 75px;
+    font-size: 36px;
+    margin-top: 24px;
+    align-self: flex-end; */
+  }
+.button-wrapper {
+  position: fixed;
+  bottom: 130px;
+  left: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.buttons {
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.buttons button {
+  width: 100%;
+  font-size: 12px;
+  padding: 16px;
+}
+
+  .buttons {
+    margin-top: 160px;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .buttons button {
+    position: f;
+    width: 100%;
+    font-size: 13px;
+    padding: 20px;
+  }
+
+  .text ul li[data-page="feedback"] {
+    display: none;
+  }
+
+  footer{
+    padding: 25px 25px;
+  }
+
+  .footer-left {
+    /* padding-left: 0; */
+    font-size: 11px;
+  }
+
+  .footer-right {
+    gap: 6px;
+    font-size: 10px;
+    align-items: center;
+  }
+
+  .footer-right span:last-child {
+    display: none;
+  }
+/* 
+  .footer-right::after {
+    content: "send";
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    margin-left: 8px;
+    color: black;
+  } */
+}
+
+ @media screen and (max-width: 380px) {
+  .about-title {
+    font-size: 36px;
+  }
+  .about-subtitle {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+        .about-desc {
+          font-size: 9px;
+  margin-bottom: 40px;
         }
+         .about-pattern {
+           margin: 20px auto;
+            width: 200px;
+    height: 110px;
+         }
+
+         } 
+
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="mayvrix.png" alt="logo" />
+      </div>
+      <div class="text">
+        <ul>
+          <li class="active" data-page="products"><span>products</span></li>
+          <li data-page="about"><span>about</span></li>
+          <li data-page="feedback"><span>feedback</span></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="products" class="active">
+      <div class="app">
+        <div class="app-left">
+          <div class="title-container">
+            <h1 id="app-title">Finly</h1>
+            <span class="tag" id="app-tag">BETA</span>
+          </div>
+          <p class="desc" id="app-desc">
+            finly is a personal finance application that enables efficient tracking of income and expenses,
+            spending analysis, and financial oversight
+          </p>
+          <div class="button-wrapper">
+          <div class="buttons">
+            <button class="download" id="download-btn">download</button>
+            <button id="info-btn">info</button>
+          </div>
+          </div>
+        </div>
+        <div class="app-right">
+          <div class="arrow-button" onclick="nextApp()">
+            <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <section id="about">
+  <div class="about-container">
+    <h1 class="about-title">MAYVERIX</h1>
+    <h2 class="about-subtitle">
+      "Break the <mark>System.</mark> Build Your Own."
+    </h2>
+
+    <p class="about-desc">
+      MAYVERIX is a next-gen app distribution platform built for creators, by a creator.
+      Inspired by the words <b>MAVERICK</b> (the fearless innovator) and
+      <b>MATRIX</b> (the digital world of endless possibility),
+      <b>MAYVERIX</b> brings you apps that challenge the ordinary and redefine what’s possible.
+    </p>
+
+    <div class="about-row">
+    <button class="creator-btn">about the creator</button>
+
+    <div class="about-pattern"></div>
+    </div>
+  </div>
+</section>
+
+    <section id="feedback">
+      <h2>Feedback</h2>
+      <p>Send us your feedback! We love hearing from you.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-left">MATRIX</div>
+    <div class="footer-right">
+      <span class="material-symbols-outlined">mail</span>
+      <span>matrix@example.com</span>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.text ul li');
+    const sections = document.querySelectorAll('main section');
+    const title = document.getElementById("app-title");
+    const tag = document.getElementById("app-tag");
+    const desc = document.getElementById("app-desc");
+    const downloadBtn = document.getElementById("download-btn");
+    const infoBtn = document.getElementById("info-btn");
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(tab.dataset.page).classList.add('active');
       });
-    </script>
-  </body>
+    });
+
+    const apps = [
+      {
+        name: "Finly",
+        tag: "BETA",
+        tagColor: "blueviolet",
+        desc: "finly is a personal finance application that enables efficient tracking of income and expenses, spending analysis, and financial oversight",
+        download: "https://example.com/download",
+        info: "products/products.html",
+        upcoming: false
+      },
+      {
+        name: "Supra",
+        tag: "UPCOMING",
+        tagColor: "red",
+        desc: "Supra is an upcoming productivity tool that boosts workflow using smart task grouping and minimal UI.",
+        download: "https://example.com/supra/download",
+        info: "https://example.com/supra/info",
+        upcoming: true
+      },
+    //   {
+    //     name: "Nova",
+    //     tag: "RELEASE",
+    //     tagColor: "limegreen",
+    //     desc: "Nova helps automate daily tasks using customizable workflows and AI triggers.",
+    //     download: "https://example.com/nova/download",
+    //     info: "https://example.com/nova/info",
+    //     upcoming: false
+    //   }
+    ];
+
+    let current = 0;
+
+    function nextApp() {
+      current = (current + 1) % apps.length;
+      const app = apps[current];
+      title.textContent = app.name;
+      tag.textContent = app.tag;
+      tag.style.backgroundColor = app.tagColor;
+      desc.textContent = app.desc;
+      if (app.upcoming) {
+        downloadBtn.classList.add("disabled");
+        infoBtn.classList.add("disabled");
+        downloadBtn.onclick = null;
+        infoBtn.onclick = null;
+      } else {
+        downloadBtn.classList.remove("disabled");
+        infoBtn.classList.remove("disabled");
+        downloadBtn.onclick = () => location.href = app.download;
+        infoBtn.onclick = () => location.href = app.info;
+      }
+    }
+
+    // ✅ Initialize with the first app (Finly)
+    const initial = apps[0];
+    title.textContent = initial.name;
+    tag.textContent = initial.tag;
+    tag.style.backgroundColor = initial.tagColor;
+    desc.textContent = initial.desc;
+    if (initial.upcoming) {
+      downloadBtn.classList.add("disabled");
+      infoBtn.classList.add("disabled");
+      downloadBtn.onclick = null;
+      infoBtn.onclick = null;
+    } else {
+      downloadBtn.classList.remove("disabled");
+      infoBtn.classList.remove("disabled");
+      downloadBtn.onclick = () => location.href = initial.download;
+      infoBtn.onclick = () => location.href = initial.info;
+    }
+
+    setInterval(nextApp, 3333);
+</script>
+
+</body>
+
 </html>
