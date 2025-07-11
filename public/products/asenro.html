@@ -1,11 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>asenro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>asenro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Savate:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet">
+  <style>
+    main {
+      margin-top: 0;
+    }
+
+    body {
+      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+      font-family: monospace;
+      background: #ffffff;
+      color: #000;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      background-color: white;
+      border-bottom: 1px solid #ccc;
+    }
+
+    header img.logo {
+      height: 69px;
+    }
+
+    nav {
+      display: flex;
+      gap: 50px;
+    }
+
+    nav span {
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #888;
+    }
+
+    nav span.active {
+      color: black;
+      text-decoration: underline;
+    }
+
+    .content {
+      padding: 40px 32px;
+    }
+
+    .overview-scroll {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      overflow-x: auto;
+      padding: 40px 0;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      min-width: 200px;
+    }
+
+    .image-box img {
+      width: 190px;
+      height: 402px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+    
+  .download-btn {
+    color: #ffffff;
+  }
+
+    /* ✅ Mobile hidden by default via inline style only */
+    /* #overview-mobile {
+    
+    } */
+
+
+/* info */
+    .info-container {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 40px;
+}
+
+.info-bg {
+  width: 380px;
+  height: auto;
+  object-fit: contain;
+}
+
+.info-text {
+  max-width: 600px;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.info-heading {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 18px;
+  margin: 2px 0 12px;
+  font-family: monospace;
+}
+
+.info-text ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+
+.info-text ul li::before {
+  content: "> ";
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+
+/* manual */
+.manual-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 60px;
+}
+
+.manual-gif {
+  width: 240px;
+  height: auto;
+  margin-bottom: 30px;
+  /* border-radius: 10px; */
+  /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+}
+
+
+    /*   ------------------      */
+
+    @media (max-width: 500px) {
+  /* Hide desktop layout */
+  #overview {
+    display: none !important;
+  }
+
+  #overview-mobile {
+    display: block;
+    padding: 0;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .content {
+    padding: 12px 0 60px; /* ↓ Less vertical space */
+  }
+.mobile-scroll {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding-left: calc(50vw - 100px); /* ✅ center first image */
+  padding-right: 4px;
+  box-sizing: border-box;
+}
+
+
+  .mobile-image {
+
+    flex: 0 0 auto;
+    /* min-width: 100vw; */
+    /* scroll-snap-align: start; */
+    scroll-snap-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 280px); /* Slightly reduced height for tighter layout */
+  }
+
+  .mobile-image img {
+    /* margin: 10;
+  padding: 10; */
+  display: block;
+    width: 200px;             /* Smaller image size */
+    height: 426px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  }
+
+  .download-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+    padding: 18px 47px;
+    border-radius:15px;
+    font-size: 13px;
+    z-index: 9999;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+      border-bottom: none;
+  }
+
+  header > div {
+    gap: 8px !important;
+  }
+
+  nav {
+    gap: 24px;
+  }
+
+  nav span {
+    font-size: 13px;
+    font-family: 'Press Start 2P', monospace;
+  }
+
+    header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0px 20px 20px;
+    gap: 20px;
+  }
+
+  header > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    /* padding-top: px; */
+  }
+
+  nav span {
+    font-size: 13px;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: lowercase;
+  }
+
+  .mobile-scroll {
+  scrollbar-width: none;            /* Firefox */
+  -ms-overflow-style: none;         /* Internet Explorer and old Edge */
+}
+
+.mobile-scroll::-webkit-scrollbar {
+  display: none;                    /* Chrome, Safari, new Edge */
+}
+
+
+/*info*/
+
+.info-container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .info-bg {
+    display: none;
+  }
+
+  .info-text {
+    font-size: 16px;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .info-heading {
+    font-size: 20px;
+    margin: 2px 0px 2px;
+  }
+
+  .info-text ul {
+    margin-bottom: 20px;
+  }
+
+
+
+  /* manual */
+   .manual-container {
+    padding-top: 40px;
+  }
+
+  .manual-gif {
+    width: 180px;
+    margin-bottom: 30px;
+  }
+
+  #manual h2 {
+    font-size: 25px;
+  }
+
+  #manual p {
+    font-size: 20px;
+  }
+
+  /* .mobile-image.first {
+  margin-left: calc(20vw - 75px); /* center first image */
+} 
+
+@media (max-width: 500px) {
+  header {
+    gap: 30px;
+  }
+    .download-btn {
+padding: 20px 80px;
+    }
+      nav span {
+    font-size: 15px;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: lowercase;
+  }
+}
+@media (max-width: 500px) {
+  .mobile-image img {
+    width: 280px;              /* Was 200px */
+    height: 598px;             /* Was 426px */
+  }
+}
+@media (max-width: 390px) {
+  .mobile-image img {
+    width: 200px;
+    height: 426px;
+  }
+}
+@media (max-width: 390px) {
+  header {
+    gap: 15px;
+  }
+     .download-btn {
+padding: 17px 47px;
+  }
+    nav span {
+    font-size: 13px;
+    font-family: 'Press Start 2P', monospace;
+    text-transform: lowercase;
+  }
+  .info-text {
+    font-size: 11px;
+  }
+
+  .info-heading {
+    font-size: 16px;
+  }
+}
+
+
+
+  </style>
 </head>
 <body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 17px;">
+      <img src="images/asenro/asenro.png" class="logo" alt="Finly Logo" />
+      <h1 style="font-size: 40px; font-family: 'Antonio'; font-weight: 300;">asenro</h1>
+    </div>
+    <nav>
+      <span class="tab active" data-tab="overview">overview</span>
+      <span class="tab" data-tab="manual">manual</span>
+      <span class="tab" data-tab="info">info</span>
+    </nav>
+  </header>
+
+  <main>
+    <!-- DESKTOP OVERVIEW -->
+    <section id="overview" class="content">
+      <div class="overview-scroll">
+        <div class="column"><div class="image-box" style="margin-top: 150px;"><img src="images/asenro/user.png" alt="1" /></div></div>
+        <div class="column"><div class="image-box"><img src="images/asenro/home.png" alt="2" /></div><div class="image-box"><img src="images/asenro/check.png" alt="3" /></div></div>
+        <div class="column"><div class="image-box" style="margin-top: 150px;"><img src="images/asenro/calander.png" alt="4" /></div></div>
+        <div class="column"><div class="image-box"><img src="images/asenro/subjects.png" alt="5" /></div><div class="image-box"><img src="images/asenro/timetable.png" alt="6" /></div></div>
+        <div class="column"><div class="image-box" style="margin-top: 150px;"><img src="images/asenro/dialog.png" alt="7" /></div></div>
+        <div class="column"><div class="image-box"><img src="images/asenro/attend.png" alt="8" /></div><div class="image-box"><img src="images/asenro/percent.png" alt="9" /></div></div>
+        <div class="column"><div class="image-box" style="margin-top: 150px;"><img src="images/asenro/settings.png" alt="10" /></div></div>
+      </div>
+    </section>
+
+   
+ <!-- ✅ MOBILE OVERVIEW (separate layout) -->
+<section id="overview-mobile" class="content hidden">
+  <div class="mobile-scroll">
+    <div class="mobile-image first" "><img src="images/asenro/user.png" alt="1" /></div>
+    <div class="mobile-image" id="default-start"><img src="images/asenro/home.png" alt="2" /></div>
+    <div class="mobile-image"><img src="images/asenro/attend.png" alt="3" /></div>
+    <div class="mobile-image"><img src="images/asenro/calander.png" alt="4" /></div>
+    <div class="mobile-image"><img src="images/asenro/subjects.png" alt="5" /></div>
+    <div class="mobile-image"><img src="images/asenro/timetable.png" alt="6" /></div>
+    <div class="mobile-image"><img src="images/asenro/dialog.png" alt="7" /></div>
+    <div class="mobile-image"><img src="images/asenro/settings.png" alt="8" /></div>
+    <div class="mobile-image"><img src="images/asenro/check.png" alt="9" /></div>
+    <div class="mobile-image" style="margin-right: calc(50vw - 75px);"><img src="images/asenro/percent.png" alt="10" /></div>
+  </div>
+</section>
+
+
+    <!-- MANUAL -->
+<section id="manual" class="content hidden">
+  <div class="manual-container">
+    <img src="dog.gif" alt="Manual GIF" class="manual-gif" />
+    <h2>manual</h2>
+    <p>coming soon</p>
+  </div>
+</section>
+
+
     
+    <!-- INFO -->
+<section id="info" class="content hidden">
+  <div class="info-container">
+    <img src="finlybg.png" alt="finlybg" class="info-bg" />
+    <div class="info-text">
+      <h3 class="info-heading">description</h3>
+      <p>asenro helps you manage subjects and attendance, track daily classes, set semester sessions, and back up your academic data</p>
+      <ul>
+        <li>track attendance & percentage</li>
+        <li>manage subjects & semesters</li>
+        <li>know how many classes you can miss</li>
+        <li>switch sessions for each semester</li>
+        <li>back up your data, now with autosave</li>
+      </ul>
+
+      <h3 class="info-heading">details</h3>
+      <p>
+        version: 1.1.1<br>
+        supports: android only<br>
+        size: 50mb<br>
+        released on: july 12 2025<br>
+        updated on: july 12 2025<br>
+        required os: android 9.0 and up<br>
+        in-app purchase: no
+      </p>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+<a href="" download class="download-btn">Download</a>
+
+
+  <script>
+  const preloadImages = [
+    "images/HOME.png",
+    "images/LOCK.png",
+    "images/PROFILE.png",
+    "images/REMINDER.png",
+    "images/WALLETS.png",
+    "images/HISTORY.png",
+    "images/SETTINGS.png",
+    "images/SAVINGS.png",
+    "images/TAGS.png",
+    "images/NEWTASK.png",
+    "images/manual.gif",
+    "finlybg.png"
+  ];
+
+  preloadImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+</script>
+
+
+  <script>
+  const tabs = document.querySelectorAll('.tab');
+  const sections = {
+    overview: document.getElementById('overview'),
+    manual: document.getElementById('manual'),
+    info: document.getElementById('info'),
+  };
+  const overviewMobile = document.getElementById('overview-mobile');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Hide all sections
+      Object.values(sections).forEach(sec => sec.classList.add('hidden'));
+      overviewMobile.classList.add('hidden');
+
+      const tabKey = tab.dataset.tab;
+      if (tabKey === 'overview') {
+        if (window.innerWidth <= 768) {
+          overviewMobile.classList.remove('hidden');
+
+          // ✅ Scroll to second image
+          const defaultStart = document.getElementById('default-start');
+          if (defaultStart) {
+            setTimeout(() => {
+              defaultStart.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            }, 100); // Delay to ensure layout is rendered
+          }
+        } else {
+          sections.overview.classList.remove('hidden');
+        }
+      } else {
+        sections[tabKey].classList.remove('hidden');
+      }
+    });
+  });
+
+  // ✅ On initial load: scroll to second image if on mobile
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 768) {
+      sections.overview.classList.add('hidden');
+      overviewMobile.classList.remove('hidden');
+
+      const defaultStart = document.getElementById('default-start');
+      if (defaultStart) {
+        setTimeout(() => {
+          defaultStart.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        }, 100);
+      }
+    } else {
+      sections.overview.classList.remove('hidden');
+      overviewMobile.classList.add('hidden');
+    }
+  });
+</script>
+
+
 </body>
 </html>
