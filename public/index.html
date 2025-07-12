@@ -671,8 +671,8 @@
         downloadBtn.onclick = () => {
   const a = document.createElement('a');
   a.href = app.download;
-  a.download = ""; // optional: forces download
-  a.click();
+ window.open(app.download, '_blank');
+
 };
 
         infoBtn.onclick = () => location.href = app.info;
